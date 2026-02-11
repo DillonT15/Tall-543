@@ -8,24 +8,42 @@ export default function Home() {
 
       <h2>CSC-543-01 </h2>
       <p>Portfolio Site (Testing):</p>
-      
-      <ul>
-        <li>Resume</li>
-        <li>Work Experience</li>
-        <li>Education</li>
-        <li>Certifications</li>
-      </ul>
-      
-      <h3>About me:</h3>
-      <ul>
-      <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-        labore et dolore magna aliqua. </li>
-      </ul>
-      
-   <h4><ul><li><p>This is</p></li><li><p>using all tags</p></li><li><p>in one line of code</p></li></ul></h4>
 
+      {/* Section 1 (currently for about me)*/}
+            <section
+        style={{
+          marginTop: '2rem',
+          padding: '1rem',
+          backgroundColor: '#2f2e2b',
+        }}
+      >
 
-      <Intro/>
+      <ul>
+        <h3>About me</h3>
+        <li>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placera</li>
+        <li>n id cursus mi pretium tellus duis convallis.</li>
+        <li>empus leo eu aenean sed diam urna tempor. </li>
+      </ul>
+        <Intro />
+      </section>
+
+      {/* Section 2 (Currently for additional information) */}
+            <section
+        style={{
+          marginTop: '2rem',
+          padding: '1rem',
+          backgroundColor: '#587f97',
+        }}
+        >
+      <h4>Additional Information:</h4>
+      <ul>
+      <li>empus leo eu aenean sed diam urna tempor. </li>
+      </ul>
+      <Intro />
+      </section>
+
+      
+
       </main>
     </div>
   );

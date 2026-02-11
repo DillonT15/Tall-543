@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import Header from '@/layout/header';
+import Footer from "@/layout/footer";
+import Aside from "@/layout/aside";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -27,7 +30,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Header/>
+    {/* additional div here specifically for ASide using flex to format on left  */}
+     <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <Aside />
+      {children}
+    </div>
+    
+        <Footer />
       </body>
     </html>
   );
