@@ -4,7 +4,7 @@ import React from 'react';
 const Aside: React.FC = () => {
 return (
     <aside style={{ padding: '1rem', backgroundColor: 
-    '#3ae7f0',minWidth: '200px', }}>
+    '#343131',minWidth: '200px', }}>
     <h2>Aside</h2>
         <ul>
         <li>Home</li>

@@ -4,7 +4,7 @@ import React from 'react';
 const Header: React.FC = () => {
 return (
     <header style={{ padding: '1rem', backgroundColor: 
-    '#eb76d6' }}>
+    '#262325' }}>
     <h1>My Application Header</h1>
     </header>
     );

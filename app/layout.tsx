@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <Header/>
     {/* additional div here specifically for ASide using flex to format on left  */}
-     <div style={{ display: 'flex', minHeight: '100vh' }}>
+     <div style={{ display: 'flex'}}>
       <Aside />
       {children}
     </div>
