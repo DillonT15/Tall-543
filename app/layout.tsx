@@ -31,10 +31,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
-    {/* additional div here specifically for ASide using flex to format on left  */}
-     <div style={{ display: 'flex'}}>
+
+    {/* main layout + aside. Using flexbox to align */}
+     <div className="flex flex-1">
       <Aside />
+      <div className="flex-1">
       {children}
+      </div>
     </div>
     
         <Footer />
