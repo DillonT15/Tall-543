@@ -1,9 +1,25 @@
+import React from "react";
+
+import User from "@/components/user"
+import Link from 'next/link';
+
+async function getPosts() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+  const data = await response.json()
+  return data;
+}
+
+
 /*import Image from "next/image";*/
 import Intro from "../components/intro";
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+
+
+
+
       <h1>Dillon Tall</h1>
 
       <h2>CSC-543-01 </h2>
