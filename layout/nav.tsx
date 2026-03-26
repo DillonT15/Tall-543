@@ -5,18 +5,24 @@ import Link from 'next/link';
 
 const Header: React.FC = () => {
   return (
-    <nav className="bg-slate-600 px-4 py-2">
+    <nav className="px-4 py-2 text-xl ">
             <ul className="flex flew-row gap-5">
-                <li className="curson-pointer hover:underline bg-slate-500">
+                <li className="curson-pointer hover:underline">
                   <Link href="/"> Home</Link>
                   </li>
-                <li className="curson-pointer hover:underline bg-slate-500">
+                <li className="curson-pointer hover:underline">
                   <Link href="/about"> About</Link>
                   </li>
-                <li className="curson-pointer hover:underline bg-slate-500">
+                <li className="curson-pointer hover:underline">
                   <Link href="/projects"> Projects</Link></li>
-                <li className="curson-pointer hover:underline bg-slate-500">
-                  <Link href="/"> Contact</Link></li>
+
+                <li className="curson-pointer hover:underline">
+                  <Link href="/contact"> Contact</Link></li>
+
+
+                <li className="curson-pointer hover:underline">
+                  <Link href="/skills"> Skills</Link></li>
+
             </ul>
         </nav>
   );

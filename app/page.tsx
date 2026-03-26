@@ -18,17 +18,6 @@ const Home: React.FC = async() => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-
-       <User userName="Student Name" userType="Admin" />
-
-      
-
-
-
-      <h1>Dillon Tall</h1>
-
-      <h2>CSC-543-01 </h2>
-      <p>Portfolio Site (Testing):</p>
       
 
       {/* Section 1 (currently for about me)*/}
@@ -42,11 +31,11 @@ const Home: React.FC = async() => {
 
       <ul>
         <h3>About me</h3>
-        <li>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placera</li>
-        <li>n id cursus mi pretium tellus duis convallis.</li>
-        <li>empus leo eu aenean sed diam urna tempor. </li>
+        <li>Computer Science student focused on Cybersecurity with a strong background in IT support. 
+          Experienced in collaborating with faculty on project development and deployment. 
+          Passionate about problem-solving and eager to gain hands-on experience.</li>
       </ul>
-        <Intro />
+        
       </section>
 
       {/* Section 2 (Currently for additional information) */}

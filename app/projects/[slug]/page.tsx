@@ -4,6 +4,7 @@
 type Projects = {
   params: {
     slug: string;
+    userId: number;
   };
 };
 
@@ -12,13 +13,12 @@ const ProjectPage: React.FC<Projects> = async ({
 }: Projects) => {
   
   const { slug } = await params; // Extract the id from the params by destructuring
-     
   console.log('Params: ', params);
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${slug}`,
   );
-  const data = await response.json();
 
+  const data = await response.json();
   console.log('Project Data: ', data);
   return (
    
