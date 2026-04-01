@@ -36,27 +36,8 @@ const Home: React.FC = async() => {
           Passionate about problem-solving and eager to gain hands-on experience.</li>
       </ul>
         
-      </section>
 
-      {/* Section 2 (Currently for additional information) */}
-            <section
-        style={{
-          marginTop: '2rem',
-          padding: '1rem',
-          backgroundColor: '#587f97',
-        }}
-        >
-      <h4>Additional Information:</h4>
-      <ul>
-      <li>empus leo eu aenean sed diam urna tempor. </li>
-      </ul>
-           
-     
-
-      </section>
-
-      
-
+        </section>
       </main>
     </div>
   );

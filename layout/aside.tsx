@@ -5,7 +5,7 @@ import { GiCyberEye } from "react-icons/gi";
 const Aside: React.FC = () => {
 return (
 
-    <aside className="flex flex-col items-center bg-neutral-800 text-white w-52 p-4">
+    <aside className="flex flex-col items-center bg-neutral-800 text-white w-42 p-4">
       <nav className="mb-8">
         <ul className="flex flex-col space-y-4 text-center">
             <li>Home</li> 
