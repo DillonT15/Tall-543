@@ -27,7 +27,6 @@ if (!MONGODB_URI) {
 }
 // Cached connection object to reuse existing database connections and improve performance by avoiding unnecessary reconnections
 let cached = global.mongoose;
-// If there is no cached connection, initialize the cache with null values for the connection and promise properties
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }

@@ -1,30 +1,53 @@
 "use client";
 import React from "react";
-import Link from 'next/link';
-// https://mui.com/material-ui/react-menu/ -- HOW TO USE MUI MENU COMPONENT --
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Skills", href: "/skills" },
+  { label: "Contact", href: "/contact" },
+];
+
 
 const Header: React.FC = () => {
+  const pathname = usePathname();
+
   return (
-    <nav className="px-4 py-2 text-xl ">
-            <ul className="flex flew-row gap-5">
-                <li className="curson-pointer hover:underline">
-                  <Link href="/"> Home</Link>
-                  </li>
-                <li className="curson-pointer hover:underline">
-                  <Link href="/about"> About</Link>
-                  </li>
-                <li className="curson-pointer hover:underline">
-                  <Link href="/projects"> Projects</Link></li>
+    <nav className="w-full px-8 py-4 border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <div className="max-w-5xl mx-auto flex items-center justify-between">
 
-                <li className="curson-pointer hover:underline">
-                  <Link href="/contact"> Contact</Link></li>
+        {/* Logo / wordmark */}
+        <Link href="/" className="text-cyan-400 font-bold text-xl tracking-wide hover:text-cyan-300 transition-colors">
+        </Link>
 
-
-                <li className="curson-pointer hover:underline">
-                  <Link href="/skills"> Skills</Link></li>
-
-            </ul>
-        </nav>
+        {/* Links */}
+        <ul className="flex flex-row gap-1">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-cyan-400 bg-cyan-500/10"
+                      : "text-slate-400 hover:text-white hover:bg-slate-800"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </nav>
   );
 };
+
 export default Header;

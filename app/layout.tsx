@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from '@/layout/header';
 import Footer from "@/layout/footer";
-import Aside from "@/layout/aside";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -31,10 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
-
-    {/* main layout + aside. Using flexbox to align */}
      <div className="flex flex-1">
-      <Aside />
       <div className="flex-1">
       {children}
       </div>

@@ -7,14 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"; // React Qu
 import { ProjectModelType } from "@/models/project"; // Type definition for Project model
 import { FormState } from "@/types/types"; // Type definition for form state
 import FormMessage from "./formmessage"; // Custom component to display form messages (success/error)
-/**
- * AddProject Component
- * This component renders a form to add a new project. It uses React Query for handling form submission and state management.
- * The form includes fields for project name, description, and an active/dormant switch. Upon submission, it sends the data to the server and handles responses accordingly.
- * The component also manages form errors and displays appropriate messages based on the server response.
- * Note: The server action is handled by the `HandleSubmit` function, which is expected to return a structured response containing any errors or success messages. The form state is initialized with default values and updated based on the server response.
- * The component is designed to be reusable and can be easily integrated into a larger application where project management is required.
- */
+
 // Initial form state
 const initialState: FormState = {
   message: "",

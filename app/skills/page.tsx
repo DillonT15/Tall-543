@@ -11,8 +11,9 @@ const Projects: React.FC = async() => {
   console.log('Posts: ',posts);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans flex flex-col">
+
+      <main className="flex-1 flex flex-col items-center justify-center px-2 py-24">
   
 <div className="space-y-8">
 
