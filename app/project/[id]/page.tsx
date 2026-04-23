@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image';
 import dbConnect from "@/library/db";
 import Project from "@/models/project";
 
@@ -9,41 +10,73 @@ type ProjectPageProps = {
 const ProjectPage: React.FC<ProjectPageProps> = async ({ params }) => {
   const { id } = await params;
 
-  await connectDB();
+  await dbConnect();
+  // new - MongoDB
   const project = await Project.findById(id).lean();
-
   if (!project) return <div>Project not found</div>;
 
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
+return (
+  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+    <main className="max-w-5xl mx-auto px-8 py-24">
+      <div className="flex flex-col md:flex-row gap-12 items-start">
+        
+        {/* Left side — info */}
+        <div className="flex flex-col gap-6 flex-1">
+          <h1 className="text-4xl font-bold">{project.title as string}</h1>
 
-        <dl className="divide-y divide-gray-200 border-t border-gray-200 w-full">
-          <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium">Description</dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">{project.description}</dd>
-          </div>
-          <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium">Tech</dt>
-            <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-              {project.tech.join(", ")}
-            </dd>
-          </div>
-          {project.githubUrl && (
-            <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium">GitHub</dt>
-              <dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-                <a href={project.githubUrl} className="text-cyan-400 hover:underline" target="_blank" rel="noopener noreferrer">
-                  {project.githubUrl}
-                </a>
-              </dd>
-            </div>
+          {project.description && (
+            <p className="text-slate-300 leading-relaxed">
+              {project.description as string}
+            </p>
           )}
-        </dl>
-      </main>
-    </div>
-  );
+
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+            >
+              View on GitHub →
+            </a>
+          )}
+
+          <div className="flex gap-6">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-slate-500 mb-1">Status</p>
+              <span className={`text-sm font-medium ${project.completed ? "text-cyan-400" : "text-amber-400"}`}>
+                {project.completed ? "Completed" : "In Progress"}
+              </span>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-widest text-slate-500 mb-1">Active</p>
+              <span className={`text-sm font-medium ${project.active ? "text-cyan-400" : "text-slate-400"}`}>
+                {project.active ? "Yes" : "No"}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right side — image */}
+        {project.imageUrl && (
+          <div className="flex-1">
+            <Image
+              src={project.imageUrl?.startsWith("/") || project.imageUrl?.startsWith("http")
+                ? project.imageUrl as string
+                : `/${project.imageUrl as string}`}
+              alt={project.title as string}
+              width={600}
+              height={400}
+              className="rounded-xl object-cover w-full"
+            />
+          </div>
+        )}
+
+      </div>
+
+    </main>
+  </div>
+);
 };
 
 export default ProjectPage;

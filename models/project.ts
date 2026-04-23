@@ -3,13 +3,15 @@ import { DataTypes } from "@/types/types";
 import slugify from 'slugify';
 // move this to types...
 interface IProjectSchema {
-    _id: mongoose.Types.ObjectId,
-    type: string;
-    title: string;
-    description?: string;
-    slug: string;
-    completed: boolean;
-    active: boolean;
+  _id: mongoose.Types.ObjectId;
+  type: string;
+  title: string;
+  description?: string;
+  slug: string;
+  completed: boolean;
+  active: boolean;
+  githubUrl?: string;
+  imageUrl?: string;
 }
 
 const projectSchema: Schema<IProjectSchema> = new mongoose.Schema({
@@ -59,15 +61,22 @@ const projectSchema: Schema<IProjectSchema> = new mongoose.Schema({
             }
             return false;
         },
-        
     },
+    githubUrl: {
+        type: String,
+        required: false,
+    },
+    imageUrl: {
+        type: String,
+        required: false,
+    },
+    
 
 }, { timestamps: true, autoIndex: true });
 
 projectSchema.pre('save',  async function() {
     //console.log('Pre Save triggered: ' + this.active);
     //must use function() and not arrow function to access 'this' context of the document being saved
-
     return new Promise<void>((resolve, reject) => {
 
         try {
@@ -99,6 +108,5 @@ projectSchema.pre('save',  async function() {
 
     type ProjectModelType = InferSchemaType<typeof projectSchema>;
     const Project = mongoose.models.Project || mongoose.model("Project", projectSchema);
-
     export default Project;
     export type { ProjectModelType };
