@@ -1,100 +1,68 @@
 import React from "react";
-import Link from 'next/link';
 
-async function getPosts() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts/');
-  const data = await response.json()
-  return data;
-}
-const Projects: React.FC = async() => {
-  const posts = await getPosts();
-  console.log('Posts: ',posts);
-
+const SkillsPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+      <main className="max-w-3xl mx-auto px-6 py-24 space-y-10">
 
-      <main className="flex-1 flex flex-col items-center justify-center px-2 py-24">
-  
-<div className="space-y-8">
+        <div>
+          <h1 className="text-4xl font-bold mb-2">Skills</h1>
+          <p className="text-slate-400">A breakdown of my technical skills and certifications.</p>
+        </div>
 
-  {/* Programming Languages */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-blue-400 inline-block mb-2">
-      Programming Languages
-    </h2>
-    <p>Python, Java, HTML, CSS, SQL, Haskell, PHP (basic)</p>
-  </div>
+        <div className="space-y-8">
 
-  {/* Cybersecurity & Networking */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-green-400 inline-block mb-2">
-      Cybersecurity & Networking
-    </h2>
-    <p>
-      Security fundamentals, encryption & access control, vulnerability assessment,
-      Wireshark, Nmap (basic)
-    </p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Programming Languages</h2>
+            <p className="text-slate-300">Python, Java, HTML, CSS, SQL, Haskell, PHP</p>
+          </div>
 
-  {/* Cloud Platforms */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-purple-400 inline-block mb-2">
-      Cloud Platforms
-    </h2>
-    <p>Google Cloud Platform, AWS (basic), Microsoft Azure</p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Cybersecurity & Networking</h2>
+            <p className="text-slate-300">Security fundamentals, encryption & access control, vulnerability assessment, Wireshark, Nmap, OWASP ZAP</p>
+          </div>
 
-  {/* Version Control */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-yellow-400 inline-block mb-2">
-      Version Control & Collaboration
-    </h2>
-    <p>
-      Git, GitHub, Agile & Scrum methodologies, team collaboration,
-      problem solving, time management
-    </p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Cloud Platforms</h2>
+            <p className="text-slate-300">Google Cloud Platform, AWS, Microsoft Azure</p>
+          </div>
 
-  {/* IT Support */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-red-400 inline-block mb-2">
-      IT Support & Customer Service
-    </h2>
-    <p>
-      Helpdesk experience, troubleshooting technical issues,
-      user support, strong communication skills
-    </p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Version Control & Collaboration</h2>
+            <p className="text-slate-300">Git, GitHub, Agile & Scrum, team collaboration, problem solving</p>
+          </div>
 
-  {/* Operating Systems */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-indigo-400 inline-block mb-2">
-      Operating Systems
-    </h2>
-    <p>Windows administration, Linux/Unix command line</p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">IT Support</h2>
+            <p className="text-slate-300">Helpdesk experience, hardware & software troubleshooting, user support, ticket systems</p>
+          </div>
 
-  {/* Microsoft 365 */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-blue-600 inline-block mb-2">
-      Microsoft 365
-    </h2>
-    <p>Excel, Word, PowerPoint, Copilot</p>
-  </div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Operating Systems</h2>
+            <p className="text-slate-300">Windows administration, Linux / Unix command line</p>
+          </div>
 
-  {/* Adobe */}
-  <div>
-    <h2 className="text-xl font-semibold border-b-2 border-pink-400 inline-block mb-2">
-      Adobe Suite
-    </h2>
-    <p>Photoshop, Illustrator</p>
-  </div>
-</div>
-</main>
-</div>
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Frameworks & Libraries</h2>
+            <p className="text-slate-300">React, Next.js, Tailwind CSS, Node.js, Flask, Mongoose</p>
+          </div>
 
+          <div>
+            <h2 className="text-lg font-semibold text-cyan-400 mb-2">Microsoft 365 & Adobe</h2>
+            <p className="text-slate-300">Excel, Word, PowerPoint, Copilot, Photoshop, Illustrator</p>
+          </div>
+
+        </div>
+
+        {/* Certifications */}
+        <div>
+          <h2 className="text-lg font-semibold text-cyan-400 mb-2">Certifications</h2>
+          <p className="text-slate-300">Google Cybersecurity Certificate — Google / Coursera, 2024</p>
+        </div>
+
+      </main>
+    </div>
   );
-  
-}
+};
 
-export default Projects;
+export default SkillsPage;
