@@ -5,8 +5,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-// https://mui.com/material-ui/react-menu/ -- HOW TO USE MUI MENU COMPONENT --
-
 const Links: React.FC = () => {
   return (
     <nav className=" py-2">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import validator from "validator"; // VALIDATOR: import
 
 type FormState = {
   name: string;
@@ -19,23 +20,66 @@ const Contact: React.FC = () => {
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<FormState>>({}); // VALIDATOR: field error state
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFieldErrors((prev) => ({ ...prev, [e.target.name]: "" })); // VALIDATOR: clear error on change
   };
+
+  // VALIDATOR: entire validate function is new
+  const validate = (): boolean => {
+    const errors: Partial<FormState> = {};
+
+    if (validator.isEmpty(form.name.trim())) {
+      errors.name = "Name is required.";
+    } else if (!validator.isLength(form.name.trim(), { min: 2, max: 50 })) {
+      errors.name = "Name must be between 2 and 50 characters.";
+    }
+
+    if (validator.isEmpty(form.email.trim())) {
+      errors.email = "Email is required.";
+    } else if (!validator.isEmail(form.email)) {
+      errors.email = "Please enter a valid email address.";
+    }
+
+    if (!validator.isEmpty(form.subject.trim()) && !validator.isLength(form.subject.trim(), { max: 100 })) {
+      errors.subject = "Subject cannot exceed 100 characters.";
+    }
+
+    if (validator.isEmpty(form.message.trim())) {
+      errors.message = "Message is required.";
+    } else if (!validator.isLength(form.message.trim(), { min: 10, max: 1000 })) {
+      errors.message = "Message must be between 10 and 1000 characters.";
+    }
+
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+  // VALIDATOR: end validate function
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
     setErrorMsg("");
+
+    if (!validate()) return; // VALIDATOR: run validation before submitting
+
+    setStatus("loading");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        // VALIDATOR: sanitize inputs before sending
+        body: JSON.stringify({
+          name: validator.escape(form.name.trim()),
+          email: validator.normalizeEmail(form.email) || form.email,
+          subject: validator.escape(form.subject.trim()),
+          message: validator.escape(form.message.trim()),
+        }),
+        // VALIDATOR: end sanitize
       });
 
       if (!res.ok) {
@@ -45,6 +89,7 @@ const Contact: React.FC = () => {
 
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
+      setFieldErrors({}); // VALIDATOR: clear errors on success
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
@@ -63,7 +108,7 @@ const Contact: React.FC = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Name + Email row */}
+
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
               <label className="block text-sm text-slate-400 mb-1">Name</label>
@@ -72,10 +117,16 @@ const Contact: React.FC = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                required
                 placeholder="John Doe"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                // VALIDATOR: red border on error
+                className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+                  fieldErrors.name ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+                }`}
               />
+              {/* VALIDATOR: error message */}
+              {fieldErrors.name && (
+                <p className="text-red-400 text-xs mt-1">{fieldErrors.name}</p>
+              )}
             </div>
             <div className="flex-1">
               <label className="block text-sm text-slate-400 mb-1">Email</label>
@@ -84,14 +135,19 @@ const Contact: React.FC = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                required
                 placeholder="john@example.com"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                // VALIDATOR: red border on error
+                className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+                  fieldErrors.email ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+                }`}
               />
+              {/* VALIDATOR: error message */}
+              {fieldErrors.email && (
+                <p className="text-red-400 text-xs mt-1">{fieldErrors.email}</p>
+              )}
             </div>
           </div>
 
-          {/* Subject */}
           <div>
             <label className="block text-sm text-slate-400 mb-1">Subject</label>
             <input
@@ -100,25 +156,36 @@ const Contact: React.FC = () => {
               value={form.subject}
               onChange={handleChange}
               placeholder="What is this about?"
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+              // VALIDATOR: red border on error
+              className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+                fieldErrors.subject ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+              }`}
             />
+            {/* VALIDATOR: error message */}
+            {fieldErrors.subject && (
+              <p className="text-red-400 text-xs mt-1">{fieldErrors.subject}</p>
+            )}
           </div>
 
-          {/* Message */}
           <div>
             <label className="block text-sm text-slate-400 mb-1">Message</label>
             <textarea
               name="message"
               value={form.message}
               onChange={handleChange}
-              required
               rows={6}
               placeholder="Your message here..."
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+              // VALIDATOR: red border on error
+              className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors resize-none ${
+                fieldErrors.message ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+              }`}
             />
+            {/* VALIDATOR: error message */}
+            {fieldErrors.message && (
+              <p className="text-red-400 text-xs mt-1">{fieldErrors.message}</p>
+            )}
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={status === "loading"}
@@ -127,7 +194,6 @@ const Contact: React.FC = () => {
             {status === "loading" ? "Sending..." : "Send Message"}
           </button>
 
-          {/* Feedback */}
           {status === "success" && (
             <p className="text-center text-cyan-400 font-medium">
               Message sent! I&apos;ll get back to you soon.
@@ -136,6 +202,7 @@ const Contact: React.FC = () => {
           {status === "error" && (
             <p className="text-center text-red-400 font-medium">{errorMsg}</p>
           )}
+
         </form>
       </main>
     </div>

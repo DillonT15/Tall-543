@@ -1,34 +1,59 @@
 'use client';
-import React from 'react';
-import Branding from './branding';
+import React, { useState } from 'react';
 import Nav from './nav';
 import Links from './links';
-import { FaComputer } from "react-icons/fa6";
+import { FaComputer, FaBars, FaXmark } from "react-icons/fa6";
+
 const Header: React.FC = () => {
-return (
-    
-    
-    <header className="relative flex items-center bg-gray-900 p-4">
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        {/* left icon (currently computer logo)*/}
-        <div className="flex items-center space-x-5">
+  return (
+    <header className="bg-gray-900 border-b border-slate-800">
+      
+      {/* Main bar */}
+      <div className="relative flex items-center justify-between px-6 py-4">
 
-            {/*Not using branding yet <Branding/>*/} 
-
-            <span className="text-5xl font-bold rounded-md"> <FaComputer/> </span>
-            <h1 className="text-xl font-bold">Dillon Tall</h1>
+        {/* Left — icon + name */}
+        <div className="flex items-center gap-3">
+          <span className="text-3xl"><FaComputer /></span>
+          <h1 className="text-lg font-bold">Dillon Tall</h1>
         </div>
- {/* Added navigation to header*/}
-    <div className="absolute left-1/2 transform -translate-x-1/2">
-        <Nav />
+
+        {/* Center — nav (desktop only) */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
+          <Nav />
         </div>
-<div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center space-x-4">
-  <Links />
-</div>
-    
+
+        {/* Right — links + hamburger */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block">
+            <Links />
+          </div>
+          {/* Hamburger (mobile only) */}
+          <button
+            className="md:hidden text-2xl text-slate-300 hover:text-cyan-400 transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FaXmark /> : <FaBars />}
+          </button>
+        </div>
+
+      </div>
+
+      {/* Mobile dropdown menu */}
+      {menuOpen && (
+        <div
+          className="md:hidden border-t border-slate-800 px-6 py-4 flex flex-col gap-4"
+          onClick={() => setMenuOpen(false)}
+        >
+          <Nav />
+          <Links />
+        </div>
+      )}
+
     </header>
-    
-    
-    );
+  );
 };
+
 export default Header;

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from 'next/image';
 import dbConnect from "@/library/db";
+import Link from "next/link";
 import Project from "@/models/project";
 
 type ProjectPageProps = {
@@ -18,6 +19,9 @@ const ProjectPage: React.FC<ProjectPageProps> = async ({ params }) => {
 return (
   <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
     <main className="max-w-5xl mx-auto px-8 py-24">
+           <Link href="/projects" className="text-slate-500 hover:text-cyan-400 text-sm transition-colors mb-8 inline-block">
+        ← Back to Projects
+      </Link>
       <div className="flex flex-col md:flex-row gap-12 items-start">
         
         {/* Left side — info */}
