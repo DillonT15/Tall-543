@@ -109,101 +109,97 @@ const Contact: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block text-sm text-slate-400 mb-1">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="John Doe"
-                // VALIDATOR: red border on error
-                className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
-                  fieldErrors.name ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
-                }`}
-              />
-              {/* VALIDATOR: error message */}
-              {fieldErrors.name && (
-                <p className="text-red-400 text-xs mt-1">{fieldErrors.name}</p>
-              )}
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm text-slate-400 mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="john@example.com"
-                // VALIDATOR: red border on error
-                className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
-                  fieldErrors.email ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
-                }`}
-              />
-              {/* VALIDATOR: error message */}
-              {fieldErrors.email && (
-                <p className="text-red-400 text-xs mt-1">{fieldErrors.email}</p>
-              )}
-            </div>
-          </div>
+  <div className="flex flex-col sm:flex-row gap-4">
+    <div className="flex-1">
+      <label htmlFor="name" className="block text-sm text-slate-400 mb-1">Name</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        value={form.name}
+        onChange={handleChange}
+        placeholder="John Doe"
+        className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+          fieldErrors.name ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+        }`}
+      />
+      {fieldErrors.name && (
+        <p className="text-red-400 text-xs mt-1">{fieldErrors.name}</p>
+      )}
+    </div>
+    <div className="flex-1">
+      <label htmlFor="email" className="block text-sm text-slate-400 mb-1">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        value={form.email}
+        onChange={handleChange}
+        placeholder="john@example.com"
+        className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+          fieldErrors.email ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+        }`}
+      />
+      {fieldErrors.email && (
+        <p className="text-red-400 text-xs mt-1">{fieldErrors.email}</p>
+      )}
+    </div>
+  </div>
 
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Subject</label>
-            <input
-              type="text"
-              name="subject"
-              value={form.subject}
-              onChange={handleChange}
-              placeholder="What is this about?"
-              // VALIDATOR: red border on error
-              className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
-                fieldErrors.subject ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
-              }`}
-            />
-            {/* VALIDATOR: error message */}
-            {fieldErrors.subject && (
-              <p className="text-red-400 text-xs mt-1">{fieldErrors.subject}</p>
-            )}
-          </div>
+  <div>
+    <label htmlFor="subject" className="block text-sm text-slate-400 mb-1">Subject</label>
+    <input
+      id="subject"
+      type="text"
+      name="subject"
+      value={form.subject}
+      onChange={handleChange}
+      placeholder="What is this about?"
+      className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors ${
+        fieldErrors.subject ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+      }`}
+    />
+    {fieldErrors.subject && (
+      <p className="text-red-400 text-xs mt-1">{fieldErrors.subject}</p>
+    )}
+  </div>
 
-          <div>
-            <label className="block text-sm text-slate-400 mb-1">Message</label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              rows={6}
-              placeholder="Your message here..."
-              // VALIDATOR: red border on error
-              className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors resize-none ${
-                fieldErrors.message ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
-              }`}
-            />
-            {/* VALIDATOR: error message */}
-            {fieldErrors.message && (
-              <p className="text-red-400 text-xs mt-1">{fieldErrors.message}</p>
-            )}
-          </div>
+  <div>
+    <label htmlFor="message" className="block text-sm text-slate-400 mb-1">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      value={form.message}
+      onChange={handleChange}
+      rows={6}
+      placeholder="Your message here..."
+      className={`w-full px-4 py-3 bg-slate-800 border rounded-lg text-white placeholder-slate-500 focus:outline-none transition-colors resize-none ${
+        fieldErrors.message ? "border-red-500" : "border-slate-700 focus:border-cyan-500"
+      }`}
+    />
+    {fieldErrors.message && (
+      <p className="text-red-400 text-xs mt-1">{fieldErrors.message}</p>
+    )}
+  </div>
 
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full py-3 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-800 disabled:cursor-not-allowed rounded-lg font-semibold text-sm transition-colors"
-          >
-            {status === "loading" ? "Sending..." : "Send Message"}
-          </button>
+  <button
+    type="submit"
+    disabled={status === "loading"}
+    className="w-full py-3 bg-cyan-500 hover:bg-cyan-400 disabled:bg-cyan-800 disabled:cursor-not-allowed rounded-lg font-semibold text-sm transition-colors"
+  >
+    {status === "loading" ? "Sending..." : "Send Message"}
+  </button>
 
-          {status === "success" && (
-            <p className="text-center text-cyan-400 font-medium">
-              Message sent! I&apos;ll get back to you soon.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-center text-red-400 font-medium">{errorMsg}</p>
-          )}
+  {status === "success" && (
+    <p className="text-center text-cyan-400 font-medium">
+      Message sent! I&apos;ll get back to you soon.
+    </p>
+  )}
+  {status === "error" && (
+    <p className="text-center text-red-400 font-medium">{errorMsg}</p>
+  )}
 
-        </form>
+</form>
       </main>
     </div>
   );

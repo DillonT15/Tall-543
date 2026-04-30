@@ -15,9 +15,9 @@ const Home: React.FC = () => {
         <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
           Dillon Tall
         </h1>
-        <p className="text-xl md:text-2xl text-slate-300 mb-3">
+        <h2 className="text-xl md:text-2xl text-slate-300 mb-3">
           Computer Science / Cyber Security Student
-        </p>
+        </h2>
         <p className="text-slate-400 text-base max-w-lg mx-auto mb-12 leading-relaxed">
           Graduate student pursuing a Master's in Cybersecurity. Background in
           IT support, data operations, and secure software development.
