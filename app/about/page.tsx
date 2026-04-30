@@ -6,7 +6,7 @@ import Link from "next/link";
 const About: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans flex flex-col">
-      <main className="flex-1 flex flex-row items-center justify-center gap-12 px-6 py-24">
+      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-12 px-6 py-24">
         <div className="flex-1 text-left">
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
           <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-6">
@@ -16,6 +16,12 @@ const About: React.FC = () => {
             Computer Science student focused on Cybersecurity with a strong background
             in IT support. Experienced in collaborating with faculty on project development and deployment.
             Passionate about problem-solving and eager to gain hands-on experience.
+          </p>
+          <p className="text-lg text-slate-300 leading-relaxed mb-10">
+            My experience and education have developed my ability to develop problems, work across
+            multiple operating systems such as Windows, macOS, and Linux to understand how real world IT
+            infrastructure operates. Through coursework and projects, I have been focusing deeply on cybersecurity
+            concepts such as network security, encryption, and system vulnerabilities.
           </p>
 
           <div className="flex gap-4 flex-wrap">
@@ -34,15 +40,16 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-end">
+        {/* Image — full width on mobile, half on desktop */}
+        <div className="w-full lg:flex-1 lg:flex lg:justify-end">
           <Image
-            src="/cybersecurity.jpg"
+            src="/dillon.jpg"
             alt="About Image"
             width={600}
             height={300}
             placeholder="blur"
             blurDataURL="/cybersecurity-blur.jpg"
-            className="rounded-2xl object-cover"
+            className="rounded-2xl object-cover w-full lg:w-auto"
           />
         </div>
       </main>

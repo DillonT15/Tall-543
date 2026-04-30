@@ -26,7 +26,7 @@ const Header: React.FC = () => {
 
         {/* Right — links + hamburger */}
         <div className="flex items-center gap-4">
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Links />
           </div>
           {/* Hamburger (mobile only) */}
