@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gray-900 border-b border-slate-800">
+    <header className="bg-gray-900 border-b border-slate-800 text-white">
       
       {/* Main bar */}
       <div className="relative flex items-center justify-between px-6 py-4">
