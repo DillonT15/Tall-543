@@ -3,7 +3,7 @@ import React from "react";
 import Link from 'next/link';
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+
 
 const Links: React.FC = () => {
   return (
@@ -37,8 +37,7 @@ const Links: React.FC = () => {
             className="flex items-center gap-2"
             target="_blank"
             > 
-            <MdEmail />
-            Email
+
             </Link>
             </li>
 
